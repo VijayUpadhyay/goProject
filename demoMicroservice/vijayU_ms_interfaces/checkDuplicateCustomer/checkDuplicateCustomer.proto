@@ -1,0 +1,14 @@
+syntax="proto3";
+package checkDuplicateCustomer;
+
+service CheckDuplicateCustomer{
+	rpc CheckDuplicateCustomerBeforeCreate(RequestMsg) returns (ResponseMsg){}
+}
+
+message RequestMsg{
+	int64 aadharNumber=1;
+}
+
+message ResponseMsg{
+	bool custExist=1;
+}
