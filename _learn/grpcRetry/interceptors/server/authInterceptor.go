@@ -6,18 +6,13 @@ import (
 	"fmt"
 )
 
-/*func AuthUnary(optFuncs ...grpc.CallOption) grpc.UnaryServerInterceptor {
-	return func(parentCtx context.Context, desc *grpc.StreamDesc, cc *grpc.ClientConn, method string, streamer grpc.Streamer, opts ...grpc.CallOption) (err error) {
-		fmt.Println("Inside StreamClientInterceptor with context: ", parentCtx)
-		return err
-	}
-}*/
-
 func LogUnary() grpc.UnaryServerInterceptor {
 	return func(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error) {
 		fmt.Println("Before LogUnary handler")
+		//ur logic
 		h, err := handler(ctx, req)
 		fmt.Println("After LogUnary handler")
+		//ur logic
 		return h,err
 	}
 
@@ -26,17 +21,11 @@ func LogUnary() grpc.UnaryServerInterceptor {
 func AuthUnary() grpc.UnaryServerInterceptor {
 	return func(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error) {
 		fmt.Println("Before AuthUnary handler")
+		//ur logic
 		h, err := handler(ctx, req)
 		fmt.Println("After AuthUnary handler")
+		//ur logic
 		return h,err
-		return handler(ctx, req)
 	}
 
 }
-
-/*
-func defaultAuthentication() grpcauthentication.AuthFunc {
-	return func(ctx context.Context) (context.Context, error) {
-		return ctx, nil
-	}
-}*/
