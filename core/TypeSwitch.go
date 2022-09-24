@@ -3,12 +3,13 @@ package Basics
 import (
 	"fmt"
 )
-func main() {
-	var  x interface{}
 
-	switch i:= x.(type) {
+func main() {
+	var x interface{}
+
+	switch i := x.(type) {
 	case nil:
-		fmt.Println("type of x is: %T",i)
+		fmt.Printf("type of x is: %T\n", i)
 	case int:
 		fmt.Println("type of x is: int ")
 	case float32:
@@ -21,4 +22,4 @@ func main() {
 		fmt.Println("Unknown type")
 	}
 	fmt.Println()
-	}
+}
