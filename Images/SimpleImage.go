@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"image"
 	"image/color"
 	"image/png"
@@ -13,4 +14,5 @@ func main() {
 	f, _ := os.OpenFile("C:/Users/vupadhya/Documents/dot.png", os.O_WRONLY|os.O_CREATE, 0600)
 	defer f.Close()
 	png.Encode(f, img)
+	fmt.Println("Completed!!")
 }

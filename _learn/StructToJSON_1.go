@@ -20,7 +20,7 @@ type GroupID struct {
 func main() {
 	var test = UCSUserAccess{
 		Access:                 map[string]string{"STOCK": "1", "FOREX": "1", "WEBFOREX": "1", "WEBSTOCK": "1"},
-		SubscriptionGroupDates: map[string]GroupID{"32": GroupID{1464753600, 1472616000}, "42": GroupID{1470024000, 1472616000}},
+		SubscriptionGroupDates: map[string]GroupID{"32": {1464753600, 1472616000}, "42": {1470024000, 1472616000}},
 	}
 	body, err := json.Marshal(test)
 	if err != nil {
