@@ -1,4 +1,4 @@
-package Basics
+package main
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 
 func main() {
 	var x interface{}
-
+	x = 100.0
 	switch i := x.(type) {
 	case nil:
 		fmt.Printf("type of x is: %T\n", i)
@@ -21,5 +21,4 @@ func main() {
 	default:
 		fmt.Println("Unknown type")
 	}
-	fmt.Println()
 }
