@@ -13,5 +13,5 @@ func main() {
 	w = new(bytes.Buffer)
 	//w = time.Second
 	fmt.Println(w)
-	fmt.Println(w.Write([]byte("Ho!")))
+	fmt.Println(w.Write([]byte("Hi!")))
 }
