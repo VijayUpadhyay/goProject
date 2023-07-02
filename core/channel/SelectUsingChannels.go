@@ -19,16 +19,16 @@ func main() {
 		c3 <- "test"
 	}()
 	fmt.Println(c3)
-	for i:=0;i<2 ;i++  {
+	for i := 0; i < 2; i++ {
 		select {
-		case msg1:= <- c1:
+		case msg1 := <-c1:
 			fmt.Println(msg1)
-		case msg2:= <- c2:
+		case msg2 := <-c2:
 			fmt.Println(msg2)
 		case msg3 := <-c3:
 			fmt.Println(msg3)
 
-		/*default:
+			/*default:
 			fmt.Println("No data in channels")*/
 		}
 	}

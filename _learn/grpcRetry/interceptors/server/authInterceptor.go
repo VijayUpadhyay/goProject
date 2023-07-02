@@ -1,9 +1,9 @@
 package interceptserver
 
 import (
-	"google.golang.org/grpc"
-	"golang.org/x/net/context"
 	"fmt"
+	"golang.org/x/net/context"
+	"google.golang.org/grpc"
 )
 
 func LogUnary() grpc.UnaryServerInterceptor {
@@ -13,7 +13,7 @@ func LogUnary() grpc.UnaryServerInterceptor {
 		h, err := handler(ctx, req)
 		fmt.Println("After LogUnary handler")
 		//ur logic
-		return h,err
+		return h, err
 	}
 
 }
@@ -25,7 +25,7 @@ func AuthUnary() grpc.UnaryServerInterceptor {
 		h, err := handler(ctx, req)
 		fmt.Println("After AuthUnary handler")
 		//ur logic
-		return h,err
+		return h, err
 	}
 
 }

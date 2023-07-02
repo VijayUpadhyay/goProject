@@ -8,7 +8,7 @@ type s struct {
 }
 
 var ma = map[string]s{
-	"key1": s{10, 10.89},
+	"key1": {10, 10.89},
 	"key2": {20, 30.90},
 }
 

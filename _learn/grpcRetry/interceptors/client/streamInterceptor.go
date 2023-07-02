@@ -1,8 +1,8 @@
 package client
 
 import (
-	"google.golang.org/grpc"
 	"golang.org/x/net/context"
+	"google.golang.org/grpc"
 )
 
 func StreamClientInterceptor() grpc.StreamClientInterceptor {
@@ -11,6 +11,6 @@ func StreamClientInterceptor() grpc.StreamClientInterceptor {
 
 		//your impl
 
-		return clientStream,nil
+		return clientStream, nil
 	}
 }

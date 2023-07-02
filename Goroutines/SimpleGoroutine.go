@@ -5,13 +5,13 @@ import (
 	"time"
 )
 
-func sayHello(str string)  {
-	for i:=0;i<5 ;i++  {
-		time.Sleep(100*time.Millisecond)
-		fmt.Println("str is: ",str)
+func sayHello(str string) {
+	for i := 0; i < 5; i++ {
+		time.Sleep(100 * time.Millisecond)
+		fmt.Println("str is: ", str)
 	}
 }
-func main()  {
+func main() {
 	fmt.Println()
 	go sayHello("hello")
 	sayHello("hi")

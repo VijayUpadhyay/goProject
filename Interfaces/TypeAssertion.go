@@ -5,8 +5,8 @@ import "fmt"
 func main() {
 	var i interface{} = "hello"
 
-	p,ok2:= i.(int)
-	fmt.Println(p,ok2)
+	p, ok2 := i.(int)
+	fmt.Println(p, ok2)
 
 	s := i.(string)
 	fmt.Println(s)

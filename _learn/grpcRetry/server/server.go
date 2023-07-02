@@ -1,32 +1,34 @@
 package main
 
 import (
-	"golang.org/x/net/context"
-	"_learn/grpcRetry/pb"
-	"net"
-	"log"
-	"google.golang.org/grpc"
 	"_learn/grpcRetry/config"
-	"fmt"
-	"google.golang.org/grpc/codes"
-	"errors"
 	"_learn/grpcRetry/interceptors/server"
+	"_learn/grpcRetry/pb"
+	"errors"
+	"fmt"
 	"github.com/grpc-ecosystem/go-grpc-middleware"
+	"golang.org/x/net/context"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/codes"
+	"log"
+	"net"
 )
 
 type server struct{}
-var a=int32(1000)
+
+var a = int32(1000)
+
 func (s *server) CheckRetryOps(ctx context.Context, i *retrytest.Req) (*retrytest.Resp, error) {
 
 	resp := new(retrytest.Resp)
 	//context check
-	timeVal,flag:=ctx.Deadline()
-	fmt.Println("Deadline details--> timeVal is: ",timeVal," and flag is: ",flag)
+	timeVal, flag := ctx.Deadline()
+	fmt.Println("Deadline details--> timeVal is: ", timeVal, " and flag is: ", flag)
 	// to check deadline/timeout is over and client is still expecting the output or not
-	if ctx.Err() == context.Canceled{
+	if ctx.Err() == context.Canceled {
 		fmt.Println("Inside ctx.Err()")
-		resp.Status=codes.Canceled.String()
-		return resp,errors.New("Client cancelled, abandoning.")
+		resp.Status = codes.Canceled.String()
+		return resp, errors.New("Client cancelled, abandoning.")
 	}
 	//fmt.Printf("Going to sleep for :%d sec", retryconfig.Sleep_Time)
 	//time.Sleep(retryconfig.Sleep_Time * time.Second)
@@ -34,7 +36,7 @@ func (s *server) CheckRetryOps(ctx context.Context, i *retrytest.Req) (*retrytes
 	fmt.Println("\nFilling resp.....")
 	a++
 	resp.B, resp.Status = a, "SUCCESS"
-	fmt.Println("Sent Response is:",a)
+	fmt.Println("Sent Response is:", a)
 	fmt.Println("**************Done**********")
 	return resp, nil
 }

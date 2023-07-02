@@ -1,18 +1,18 @@
 package main
 
 import (
-	"structures"
 	"encoding/json"
 	"fmt"
+	"structures"
 )
 
-func main()  {
-	var test = structures.StructData{"Vijay",4,"address unknown","umesh","indu"}
-	body,err := json.Marshal(test)
-	if err != nil{
+func main() {
+	var test = structures.StructData{"Vijay", 4, "address unknown", "umesh", "indu"}
+	body, err := json.Marshal(test)
+	if err != nil {
 		fmt.Println("Unable to marshall to JSON")
 		return
-	}else {
+	} else {
 		fmt.Println(string(body))
 	}
 

@@ -1,16 +1,15 @@
 package client
 
 import (
-	"time"
-	"google.golang.org/grpc"
-	"golang.org/x/net/context"
-	"fmt"
-	cfg"_learn/grpcRetry/config"
+	cfg "_learn/grpcRetry/config"
 	"_learn/grpcRetry/pb"
-	"log"
+	"fmt"
 	"github.com/grpc-ecosystem/go-grpc-middleware/util/backoffutils"
+	"golang.org/x/net/context"
+	"google.golang.org/grpc"
+	"log"
+	"time"
 )
-
 
 // for chain interceptor
 func RetryUnary(clientreq *retrytest.Req) grpc.UnaryClientInterceptor {
@@ -33,11 +32,11 @@ func RetryUnary(clientreq *retrytest.Req) grpc.UnaryClientInterceptor {
 
 func sleepAndRetry(req *retrytest.Req, start time.Time) {
 	var attempt uint8
-	for attempt = 1; (attempt <= cfg.MAX_RETRY) && (int(start.Sub(time.Now()).Seconds()) < cfg.MAX_BACKOFF) ; attempt++ {
-		fmt.Println(" int(start.Sub(time.Now()).Seconds()) < cfg.MAX_BACKOFF ",int(start.Sub(time.Now()).Seconds()) < cfg.MAX_BACKOFF)
-		fmt.Println("Attemp number: ",attempt)
-		sleeptime:=GetSleepTimeInterval(attempt,float64(cfg.INITIAL_BACKOFF))
-		fmt.Println("Going to sleep for: ",sleeptime)
+	for attempt = 1; (attempt <= cfg.MAX_RETRY) && (int(start.Sub(time.Now()).Seconds()) < cfg.MAX_BACKOFF); attempt++ {
+		fmt.Println(" int(start.Sub(time.Now()).Seconds()) < cfg.MAX_BACKOFF ", int(start.Sub(time.Now()).Seconds()) < cfg.MAX_BACKOFF)
+		fmt.Println("Attemp number: ", attempt)
+		sleeptime := GetSleepTimeInterval(attempt, float64(cfg.INITIAL_BACKOFF))
+		fmt.Println("Going to sleep for: ", sleeptime)
 		time.Sleep(sleeptime)
 		err := ClientRetry(req)
 		if err == nil && attempt == 3 {
@@ -49,19 +48,19 @@ func sleepAndRetry(req *retrytest.Req, start time.Time) {
 
 func GetSleepTimeInterval(attempt uint8, backOff float64) time.Duration {
 	var sleeptime time.Duration
-	if attempt==1{
-		sleeptime=cfg.INITIAL_BACKOFF*time.Second
-	}else {
-		backOff=backOff*cfg.MULTIPLIER
-		current_backofftime:=time.Duration(backOff+float64(30))*time.Second
-		sleeptime=backoffutils.JitterUp(current_backofftime,float64(cfg.JITTER))
+	if attempt == 1 {
+		sleeptime = cfg.INITIAL_BACKOFF * time.Second
+	} else {
+		backOff = backOff * cfg.MULTIPLIER
+		current_backofftime := time.Duration(backOff+float64(30)) * time.Second
+		sleeptime = backoffutils.JitterUp(current_backofftime, float64(cfg.JITTER))
 	}
 	return sleeptime
 }
 
 func ClientRetry(req *retrytest.Req) error {
-	ctx, _ := context.WithTimeout(context.Background(), cfg.GrpcTimeout * time.Second)
-	conn, err := grpc.DialContext(ctx,cfg.GrpcServerAdd, grpc.WithInsecure())
+	ctx, _ := context.WithTimeout(context.Background(), cfg.GrpcTimeout*time.Second)
+	conn, err := grpc.DialContext(ctx, cfg.GrpcServerAdd, grpc.WithInsecure())
 	fmt.Printf("ClientRetry: conn is: %v and err is: %v\n", conn, err)
 	if err != nil {
 		log.Println("Error at client retry: %v", err)

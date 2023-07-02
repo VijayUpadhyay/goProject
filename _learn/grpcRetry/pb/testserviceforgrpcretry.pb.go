@@ -23,7 +23,7 @@ var _ = math.Inf
 const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 
 type Req struct {
-	A                    int32    `protobuf:"varint,1,opt,name=a,proto3" json:"a,omitempty"`
+	A int32 `protobuf:"varint,1,opt,name=a,proto3" json:"a,omitempty"`
 }
 
 func (m *Req) Reset()         { *m = Req{} }

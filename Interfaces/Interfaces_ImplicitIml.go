@@ -4,18 +4,17 @@ import (
 	"fmt"
 )
 
-type  InterfaceTest interface {
+type InterfaceTest interface {
 	Test() string
 	M()
 }
 
 type StructTest struct {
-	firstName,lastName string
+	firstName, lastName string
 }
 
-
-func (v StructTest) Test() string  {
-	return v.firstName+" "+v.lastName
+func (v StructTest) Test() string {
+	return v.firstName + " " + v.lastName
 }
 
 func (t StructTest) M() {
@@ -24,9 +23,9 @@ func (t StructTest) M() {
 }
 func main() {
 	var i InterfaceTest
-	l:= StructTest{"vijay","upadhyay"}
-	i=l
-	fmt.Printf("%d",i.M)
+	l := StructTest{"vijay", "upadhyay"}
+	i = l
+	fmt.Printf("%d", i.M)
 	fmt.Println()
 	fmt.Println(i.Test())
 }

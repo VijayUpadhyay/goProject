@@ -1,34 +1,32 @@
 package main
 
 import (
-	log "github.com/sirupsen/logrus"
-	"google.golang.org/grpc"
-	"_learn/grpcRetry/pb"
-	"golang.org/x/net/context"
-	"fmt"
-	"_learn/grpcRetry/config"
-	"time"
 	"_learn/grpcRetry/interceptors/client"
+	"fmt"
+	"time"
+
 	"github.com/grpc-ecosystem/go-grpc-middleware"
-	"github.com/grpc-ecosystem/go-grpc-middleware/retry"
+	log "github.com/sirupsen/logrus"
+	"golang.org/x/net/context"
+	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 )
 
 func main() {
-	resp,_:=gRPCReq()
+	resp, _ := gRPCReq()
 	//fmt.Println("Resp from server is: ", resp.B, " and status is: ", resp.Status)
 	fmt.Println("\nResp from server is: ", resp)
 }
 
 func gRPCReq() (*retrytest.Resp, error) {
 	//ctx, _ := context.WithDeadline(context.Background(), time.Now().Add(time.Duration(retryconfig.GrpcTimeout) * time.Second))
-	ctx, _ := context.WithTimeout(context.Background(), retryconfig.GrpcTimeout * time.Second)
+	ctx, _ := context.WithTimeout(context.Background(), retryconfig.GrpcTimeout*time.Second)
 	TLSOpt := grpc.WithInsecure()
 	// MaxDelay is the upper bound of backoff delay.
 	/*timeconfig := grpc.BackoffConfig{MaxDelay: 120 * time.Second,}*/
 	opts := []grpc_retry.CallOption{
-		grpc_retry.WithBackoff(grpc_retry.BackoffExponentialWithJitter(20 * time.Second, 0.2)),
-		grpc_retry.WithCodes(codes.Aborted, codes.Canceled, codes.DeadlineExceeded, codes.NotFound,codes.Unavailable),
+		grpc_retry.WithBackoff(grpc_retry.BackoffExponentialWithJitter(20*time.Second, 0.2)),
+		grpc_retry.WithCodes(codes.Aborted, codes.Canceled, codes.DeadlineExceeded, codes.NotFound, codes.Unavailable),
 		//grpc_retry.WithMax(3),
 	}
 	//fmt.Println("In client opts is: ",opts[0])
@@ -39,8 +37,8 @@ func gRPCReq() (*retrytest.Resp, error) {
 	)*/
 	req := new(retrytest.Req)
 	req.A = 100
-	conn, err := grpc.DialContext(ctx,retryconfig.GrpcServerAdd, TLSOpt,
-		grpc.WithUnaryInterceptor(grpc_middleware.ChainUnaryClient(client.RetryUnary(req), client.LoggingUnary(),client.AuthUnary())),
+	conn, err := grpc.DialContext(ctx, retryconfig.GrpcServerAdd, TLSOpt,
+		grpc.WithUnaryInterceptor(grpc_middleware.ChainUnaryClient(client.RetryUnary(req), client.LoggingUnary(), client.AuthUnary())),
 		grpc.WithStreamInterceptor(grpc_middleware.ChainStreamClient(grpc_retry.StreamClientInterceptor(opts...))),
 	)
 
@@ -71,5 +69,5 @@ func gRPCReq() (*retrytest.Resp, error) {
 	if err != nil {
 		fmt.Println("\nError while sending client request: ", err)
 	}
-	return resp,err
+	return resp, err
 }

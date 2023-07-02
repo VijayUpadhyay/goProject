@@ -5,29 +5,28 @@ import (
 	"time"
 )
 
-func main()  {
+func main() {
 	fmt.Println("Starting go func")
 
-	c1:= make(chan string)
-	c2:= make(chan string)
+	c1 := make(chan string)
+	c2 := make(chan string)
 	go func() {
-		time.Sleep(time.Millisecond*3)
-		c1<-"Hi"
+		time.Sleep(time.Millisecond * 3)
+		c1 <- "Hi"
 	}()
 
 	go func() {
-		time.Sleep(time.Millisecond*2)
-		c2<-"Vijay"
+		time.Sleep(time.Millisecond * 2)
+		c2 <- "Vijay"
 	}()
 
-	for i:=0;i<2 ;i++  {
+	for i := 0; i < 2; i++ {
 		select {
-		case msg1:= <-c1 :
+		case msg1 := <-c1:
 			fmt.Println(msg1)
-		case msg2:= <-c2:
+		case msg2 := <-c2:
 			fmt.Println(msg2)
 
-			
 		}
 	}
 

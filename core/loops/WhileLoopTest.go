@@ -5,9 +5,9 @@ import (
 )
 
 func main() {
-	sum:=0
-	for sum<100 {
-		sum+=10
+	sum := 0
+	for sum < 100 {
+		sum += 10
 		fmt.Println(sum)
 	}
 

@@ -12,8 +12,6 @@ func main() {
 	i.M()
 }
 
-
-
 func describe2(i Ij) {
 	fmt.Printf("(%v, %T)\n", i, i)
 }

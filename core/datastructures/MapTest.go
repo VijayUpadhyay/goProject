@@ -16,12 +16,12 @@ var m map[string]VarName
 var p2 map[int64]VarName2
 
 func main() {
-m = make(map[string]VarName)
-m["key"]=VarName{10,20}
+	m = make(map[string]VarName)
+	m["key"] = VarName{10, 20}
 
-p2 = make(map[int64]VarName2)
-p2[10]=VarName2{"p","q"}
-p2[20]=VarName2{"dfvdf","dvd"}
+	p2 = make(map[int64]VarName2)
+	p2[10] = VarName2{"p", "q"}
+	p2[20] = VarName2{"dfvdf", "dvd"}
 	fmt.Println(m["key"])
 	fmt.Println(m)
 
