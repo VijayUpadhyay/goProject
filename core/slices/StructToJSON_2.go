@@ -3,11 +3,18 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"structures"
 )
 
+type StructData struct {
+	name       string
+	rollNo     int
+	address    string
+	fatherName string
+	motherName string
+}
+
 func main() {
-	var test = structures.StructData{"Vijay", 4, "address unknown", "umesh", "indu"}
+	var test = StructData{"Vijay", 4, "address unknown", "umesh", "indu"}
 	body, err := json.Marshal(test)
 	if err != nil {
 		fmt.Println("Unable to marshall to JSON")
@@ -17,7 +24,7 @@ func main() {
 	}
 
 	//Unmarshall response
-	res := structures.StructData{}
+	res := StructData{}
 	json.Unmarshal([]byte(string(body)), &res)
 	fmt.Println(res)
 }

@@ -16,6 +16,8 @@ func main() {
 	fmt.Printf("Array is: %v, len is: %d and cap is: %d\n", s, len(s), cap(s))
 	s1 = append(s1, 200)
 	fmt.Printf("Array is: %v, len is: %d and cap is: %d\n", s1, len(s1), cap(s1))
+
+	// string sorting using ASCII value
 	str := []string{"ram", "al", "xx", "zz", "AA", "PP", "pp"}
 	sort.Strings(str)
 	fmt.Println(str)

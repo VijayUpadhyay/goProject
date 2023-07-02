@@ -9,10 +9,8 @@ func main() {
 	var area int
 	p := 10
 	q := "ram"
-	var r float32 = 3.2333339999999999999      // round off at 6th pos
-	var r1 float32 = 3.23333322229999999999999 // round off at 6th pos
+	var r float32 = 3.23333399999999999999 // round off at 6th pos
 	fmt.Println(r)
-	fmt.Println(r1)
 	fmt.Println(a)
 	fmt.Println(b)
 	fmt.Println(c)

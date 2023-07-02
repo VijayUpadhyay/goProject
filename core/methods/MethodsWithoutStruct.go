@@ -5,9 +5,8 @@ import (
 )
 
 type floatValue float64
-
 func main() {
-	value := floatValue(10.909789999999999999999999)
+	value:=floatValue(10.909789999999999999999999)
 	fmt.Println(value.withoutStruct())
 }
 

@@ -1,17 +1,17 @@
 package main
 
 import (
-	"errors"
 	"fmt"
+	"errors"
 	"math"
 )
 
 func Sqrt(x float64) (float64, error) {
 
-	if x < 0 {
-		return -1, errors.New("Given number is negative")
-	} else {
-		return math.Sqrt(x), nil
+	if x<0 {
+		return -1,errors.New("Given number is negative")
+	}else {
+		return math.Sqrt(x),nil
 	}
 
 }

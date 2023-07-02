@@ -22,6 +22,9 @@ func main() {
 	i.M()
 }
 
+
+
+
 func describe(i I) {
 	fmt.Printf("(%v, %T)\n", i, i)
 }

@@ -1,9 +1,9 @@
 package main
 
 import (
-	"fmt"
-	"math/rand"
 	"strconv"
+	"math/rand"
+	"fmt"
 )
 
 func main() {
@@ -20,9 +20,9 @@ func main() {
 	test := make([]int, NumOfObjectToAddOrDelete)
 	for i := 0; i < NumOfObjectToAddOrDelete; i++ {
 		//rand.Seed(time.Now().Unix())
-		randVal := rand.Intn(50-0) + 0
+		randVal := rand.Intn(50 - 0) + 0
 		if isNumbExists(randVal, intArray) {
-			i--
+			i--;
 			continue
 		} else {
 			test[i] = randVal
@@ -32,7 +32,7 @@ func main() {
 	fmt.Println("test array is: ", test)
 }
 
-func isNumbExists(val int, intArr []int) bool {
+func isNumbExists(val int, intArr []int) (bool) {
 	var flag = false
 	for i := 0; i < len(intArr); i++ {
 		if val == intArr[i] {
