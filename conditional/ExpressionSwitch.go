@@ -3,8 +3,8 @@ package main
 import "fmt"
 
 func main() {
-	var grade string = ""
-	var marks int = 80
+	var grade = ""
+	var marks = 80
 	switch marks {
 	case 90:
 		grade = "A"
@@ -17,7 +17,6 @@ func main() {
 	default:
 		grade = "E"
 	}
-
 	switch {
 	case grade == "A":
 		fmt.Println("Excellent")
