@@ -57,7 +57,7 @@ type IPAddrr struct {
 
 // TODO: Add a "String() string" method to IPAddr.
 
-func (m IPAddr) String()  string{
+func (m IPAddr) String() string {
 
 	n := len(m)
 	s := string(m[:n])
@@ -70,9 +70,9 @@ func (m IPAddr) String()  string{
 		s = append(s,m[i])
 
 	}*/
-	fmt.Sprintf("Value is %v",s)
+	fmt.Sprintf("Value is %v", s)
 	//strings.Replace(string(m)," ",".",-1)
-	return fmt.Sprintf("IP Address is %v\n",s)
+	return fmt.Sprintf("IP Address is %v\n", s)
 }
 
 func main() {
@@ -81,7 +81,7 @@ func main() {
 		"googleDNS": {8, 8, 8, 8},
 	}
 	//fmt.Println(hosts)
-	fmt.Println(hosts["loopback"],hosts["googleDNS"])
+	fmt.Println(hosts["loopback"], hosts["googleDNS"])
 	/*for name, ip := range hosts {
 		fmt.Printf("%v: %v\n", name, ip)
 	}*/
