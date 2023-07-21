@@ -17,6 +17,7 @@ func main() {
 	default:
 		grade = "E"
 	}
+	fmt.Println("Going for grade check with mark and values as: ", marks, grade)
 	switch {
 	case grade == "A":
 		fmt.Println("Excellent")
@@ -30,5 +31,5 @@ func main() {
 		fmt.Println("Failed")
 
 	}
-	fmt.Println()
+	fmt.Println(marks, grade)
 }

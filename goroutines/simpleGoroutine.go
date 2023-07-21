@@ -8,7 +8,7 @@ import (
 func sayHello(str string) {
 	for i := 0; i < 5; i++ {
 		time.Sleep(100 * time.Millisecond)
-		fmt.Println("str is: ", str)
+		fmt.Printf("str at %d is: %s \n", i+1, str)
 	}
 }
 func main() {
