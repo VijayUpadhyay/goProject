@@ -1,0 +1,690 @@
+{
+  "Constants": {
+    "VA_PRODUCT_RESALE_MULTPLIER": 0.11,
+    "VA_TM_SUPPORT_MULTPLIER": 0.43,
+    "VA_PROJECTS_MULTPLIER": 0.65,
+    "VA_MANAGED_SERVICES_MULTPLIER": 1.4,
+    "VA_CLOUD_MULTPLIER": 1.35
+  },
+  "LookupTables": {
+    "VA_USERS_MEDIAN_TABLE": {
+      "5-25": 12,
+      "26-100": 34,
+      "101-500": 176,
+      ">500": 687
+    },
+    "VA_REVENUE_VALUATION_MULTIPLE": {
+      "0": 6.5,
+      "0.00": 6.5,
+      "7.51": 7.5,
+      "15.10": 8.5
+    },
+    "VA_REVENUE_MULTIPLE_5YR_TABLE": {
+      "a) 30% lower than today": {
+        "Product Resale": 0.08,
+        "T&M Support": 0.4,
+        "Projects": 0.55,
+        "Managed Services": 0.9,
+        "Your Own Cloud": 0.9
+      },
+      "b) About the same as today": {
+        "Product Resale": 0.11,
+        "T&M Support": 0.43,
+        "Projects": 0.65,
+        "Managed Services": 1.4,
+        "Your Own Cloud": 1.35
+      },
+      "c) 30% higher than today": {
+        "Product Resale": 0.15,
+        "T&M Support": 0.5,
+        "Projects": 0.7,
+        "Managed Services": 1.7,
+        "Your Own Cloud": 1.5
+      }
+    },
+    "VA_REVENUE_EMPLOYEES_SERVICE_CENTRIC_TABLE": {
+      "VALUE < 5": {
+        "% Service Employees": 60.5,
+        "% Sales Employees": 10.5
+      },
+      "VALUE >= 5 && VALUE < 10": {
+        "% Service Employees": 63.4,
+        "% Sales Employees": 11.6
+      },
+      "VALUE >= 10 && VALUE < 20": {
+        "% Service Employees": 67.9,
+        "% Sales Employees": 12.7
+      },
+      "VALUE >= 20": {
+        "% Service Employees": 70.5,
+        "% Sales Employees": 13.6
+      }
+    },
+    "VA_REVENUE_EMPLOYEES_PRODUCT_CENTRIC_TABLE": {
+      "VALUE < 1": {
+        "% Service Employees": 64.3,
+        "% Sales Employees": 14.3
+      },
+      "VALUE >= 1 && VALUE < 5": {
+        "% Service Employees": 52.6,
+        "% Sales Employees": 13
+      },
+      "VALUE >= 5 && VALUE < 10": {
+        "% Service Employees": 59.1,
+        "% Sales Employees": 14.5
+      },
+      "VALUE >= 10 && VALUE < 20": {
+        "% Service Employees": 58.2,
+        "% Sales Employees": 20.6
+      },
+      "VALUE >= 20 && VALUE < 30": {
+        "% Service Employees": 61.3,
+        "% Sales Employees": 21.8
+      },
+      "VALUE >= 30 && VALUE < 50": {
+        "% Service Employees": 60.5,
+        "% Sales Employees": 23
+      },
+      "VALUE >= 50 && VALUE < 100": {
+        "% Service Employees": 61.6,
+        "% Sales Employees": 24.3
+      },
+      "VALUE >= 100": {
+        "% Service Employees": 69.4,
+        "% Sales Employees": 16.8
+      }
+    }
+  },
+  "LookUpMapping": {
+    "VA_NET_INCOME_MULTIPLIER": {
+      "Table": "VA_REVENUE_VALUATION_MULTIPLE",
+      "Key": "VA_NET_INCOME_PC"
+    },
+    "VA_PRODUCT_RESALE_MULTPLIER_5YR": {
+      "Table": "VA_REVENUE_MULTIPLE_5YR_TABLE",
+      "Key": "VA_VALUATION",
+      "Value": "Product Resale"
+    },
+    "VA_TM_SUPPORT_MULTPLIER_5YR": {
+      "Table": "VA_REVENUE_MULTIPLE_5YR_TABLE",
+      "Key": "VA_VALUATION",
+      "Value": "T&M Support"
+    },
+    "VA_PROJECTS_MULTPLIER_5YR": {
+      "Table": "VA_REVENUE_MULTIPLE_5YR_TABLE",
+      "Key": "VA_VALUATION",
+      "Value": "Projects"
+    },
+    "VA_MANAGED_SERVICES_MULTPLIER_5YR": {
+      "Table": "VA_REVENUE_MULTIPLE_5YR_TABLE",
+      "Key": "VA_VALUATION",
+      "Value": "Managed Services"
+    },
+    "VA_CLOUD_MULTPLIER_5YR": {
+      "Table": "VA_REVENUE_MULTIPLE_5YR_TABLE",
+      "Key": "VA_VALUATION",
+      "Value": "Your Own Cloud"
+    },
+    "VA_NET_INCOME_MULTIPLE_5YR": {
+      "Table": "VA_REVENUE_VALUATION_MULTIPLE",
+      "Key": "VA_NET_INCOME_PC_5YR"
+    },
+    "VA_USERS_MEDIAN": {
+      "Table": "VA_USERS_MEDIAN_TABLE",
+      "Key": "VA_USERS"
+    }
+  },
+  "LookUpRangeMapping": {
+    "VA_PCT_SERVICE_EMPLOYEES": {
+      "TableEx": {
+        "Table": "VA_REVENUE_EMPLOYEES_$VA_SLINSIGHTS_PBM_TYPE$_TABLE",
+        "Replace": "$VA_SLINSIGHTS_PBM_TYPE$"
+      },
+      "Keys": [
+        "VA_REVENUE_TOTAL_MM",
+        "VA_REVENUE_TOTAL_1YR_MM",
+        "VA_REVENUE_TOTAL_2YR_MM",
+        "VA_REVENUE_TOTAL_3YR_MM",
+        "VA_REVENUE_TOTAL_4YR_MM",
+        "VA_REVENUE_TOTAL_5YR_MM"
+      ],
+      "Values": "% Service Employees"
+    },
+    "VA_PCT_SALES_EMPLOYEES": {
+      "TableEx": {
+        "Table": "VA_REVENUE_EMPLOYEES_$VA_SLINSIGHTS_PBM_TYPE$_TABLE",
+        "Replace": "$VA_SLINSIGHTS_PBM_TYPE$"
+      },
+      "Keys": [
+        "VA_REVENUE_TOTAL_MM",
+        "VA_REVENUE_TOTAL_1YR_MM",
+        "VA_REVENUE_TOTAL_2YR_MM",
+        "VA_REVENUE_TOTAL_3YR_MM",
+        "VA_REVENUE_TOTAL_4YR_MM",
+        "VA_REVENUE_TOTAL_5YR_MM"
+      ],
+      "Values": "% Sales Employees"
+    }
+  },
+  "EvaluationRangeMapping": {
+    "VA_SERVICE_HEADCOUNT": {
+      "range_key": "VA_PCT_SERVICE_EMPLOYEES",
+      "multiplier": "VA_TOTAL_EMPLOYEES",
+      "formula": "VA_PCT_SERVICE_EMPLOYEES * VA_TOTAL_EMPLOYEES"
+    },
+    "VA_SALES_HEADCOUNT": {
+      "range_key": "VA_PCT_SALES_EMPLOYEES",
+      "multiplier": "VA_TOTAL_EMPLOYEES",
+      "formula": "VA_PCT_SALES_EMPLOYEES * VA_TOTAL_EMPLOYEES"
+    },
+    "VA_OTHER_HEADCOUNT": {
+      "range_key": "VA_SERVICE_HEADCOUNT,VA_SALES_HEADCOUNT",
+      "multiplier": "VA_TOTAL_EMPLOYEES",
+      "Formula": "VA_TOTAL_EMPLOYEES - ( VA_SERVICE_HEADCOUNT + VA_SALES_HEADCOUNT )"
+    }
+  },
+  "RRIMapping": {
+    "VA_REVENUE_TOTAL_5YR_CAGR": {
+      "NPER": 5,
+      "PresentValue": "VA_REVENUE_TOTAL",
+      "FutureValue": "VA_REVENUE_TOTAL_5YR"
+    },
+    "VA_NET_INCOME_VALUATION_5YR_CAGR": {
+      "NPER": 5,
+      "PresentValue": "VA_NET_INCOME_VALUATION",
+      "FutureValue": "VA_NET_INCOME_VALUATION_5YR"
+    },
+    "VA_ACCOUNTS_CAGR": {
+      "NPER": 5,
+      "PresentValue": "VA_ACCOUNTS",
+      "FutureValue": "VA_ACCOUNTS_5YR"
+    },
+    "VA_AVERAGE_REVENUE_NET_INCOME_VALUATION_5YR_CAGR": {
+      "NPER": 5,
+      "PresentValue": "VA_AVERAGE_REVENUE_NET_INCOME_VALUATION",
+      "FutureValue": "VA_AVERAGE_REVENUE_NET_INCOME_VALUATION_5YR"
+    }
+  },
+  "TextMapping": {
+    "S-L Insights": {
+      "Text": [
+        "- Given your choice of 5th year Revenue, Net Income goals, and Approximate Valuation Multiples, you will need to grow your Revenue by $VA_REVENUE_TOTAL_5YR_CAGR$% per year for the next 5 years.",
+        "- Given your choice of Revenue growth and attrition rate, you will need to add an average of $VA_WINS_NEEDED_AVERAGE$ new accounts each year for the next 5 years.",
+        "- These growth rates may be higher or lower than your initial expectation. The rates can be changed by changing the Planned in $5YEAR$ Revenue and Net Income numbers, which will also result in a change of your approximate 5th year valuation.",
+        "- Repeat this process until you have the most attainable balance of profitability, growth, and desired valuation."
+      ],
+      "Replace": [
+        "$VA_REVENUE_TOTAL_5YR_CAGR$",
+        "$VA_WINS_NEEDED_AVERAGE$",
+        "$5YEAR$"
+      ]
+    }
+  },
+  "Calculation": [
+    {
+      "name": "VA_REVENUE_TOTAL",
+      "formula": "VA_REVENUE_PRODUCT_RESALE + VA_REVENUE_TM_SUPPORT + VA_REVENUE_PROJECTS + VA_REVENUE_MANAGED_SERVICES + VA_REVENUE_CLOUD",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_REVENUE_PRODUCT_RESALE_PCT",
+      "formula": "VA_REVENUE_PRODUCT_RESALE / VA_REVENUE_TOTAL",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_REVENUE_TM_SUPPORT_PCT",
+      "formula": "VA_REVENUE_TM_SUPPORT / VA_REVENUE_TOTAL",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_REVENUE_PROJECTS_PCT",
+      "formula": "VA_REVENUE_PROJECTS / VA_REVENUE_TOTAL",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_REVENUE_MANAGED_SERVICES_PCT",
+      "formula": "VA_REVENUE_MANAGED_SERVICES / VA_REVENUE_TOTAL",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_REVENUE_CLOUD_PCT",
+      "formula": "VA_REVENUE_CLOUD / VA_REVENUE_TOTAL",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_SERVICE_REVENUE_PCT",
+      "formula": "VA_REVENUE_TM_SUPPORT_PCT + VA_REVENUE_PROJECTS_PCT + VA_REVENUE_MANAGED_SERVICES_PCT + VA_REVENUE_CLOUD_PCT",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "PBM_AND_PBM_TYPES",
+      "formula": "",
+      "calculationType": "PBM"
+    },
+    {
+      "name": "VA_PRODUCT_RESALE_VALUATION",
+      "formula": "VA_PRODUCT_RESALE_MULTPLIER * VA_REVENUE_PRODUCT_RESALE",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_TM_SUPPORT_VALUATION",
+      "formula": "VA_TM_SUPPORT_MULTPLIER * VA_REVENUE_TM_SUPPORT",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_PROJECTS_VALUATION",
+      "formula": "VA_PROJECTS_MULTPLIER * VA_REVENUE_PROJECTS",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_MANAGED_SERVICES_VALUATION",
+      "formula": "VA_MANAGED_SERVICES_MULTPLIER * VA_REVENUE_MANAGED_SERVICES",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_CLOUD_VALUATION",
+      "formula": "VA_CLOUD_MULTPLIER * VA_REVENUE_CLOUD",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_REVENUE_TOTAL_VALUATION",
+      "formula": "VA_PRODUCT_RESALE_VALUATION + VA_TM_SUPPORT_VALUATION + VA_PROJECTS_VALUATION + VA_MANAGED_SERVICES_VALUATION + VA_CLOUD_VALUATION",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_NET_INCOME",
+      "formula": "VA_NET_INCOME_PC * VA_REVENUE_TOTAL",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_NET_INCOME_MULTIPLIER",
+      "formula": "",
+      "calculationType": "lookup"
+    },
+    {
+      "name": "VA_NET_INCOME_VALUATION",
+      "formula": "VA_NET_INCOME_MULTIPLIER * VA_NET_INCOME",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_AVERAGE_REVENUE_NET_INCOME_VALUATION",
+      "formula": "(VA_REVENUE_TOTAL_VALUATION + VA_NET_INCOME_VALUATION) / 2",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_REVENUE_PRODUCT_RESALE_PC",
+      "formula": "VA_REVENUE_PRODUCT_RESALE / VA_REVENUE_TOTAL",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_REVENUE_TM_SUPPORT_PC",
+      "formula": "VA_REVENUE_TM_SUPPORT / VA_REVENUE_TOTAL",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_REVENUE_PROJECTS_PC",
+      "formula": "VA_REVENUE_PROJECTS / VA_REVENUE_TOTAL",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_REVENUE_MANAGED_SERVICES_PC",
+      "formula": "VA_REVENUE_MANAGED_SERVICES / VA_REVENUE_TOTAL",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_REVENUE_CLOUD_PC",
+      "formula": "VA_REVENUE_CLOUD / VA_REVENUE_TOTAL",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_REVENUE_TOTAL_1YR",
+      "formula": "VA_REVENUE_TOTAL     * ( 1 + VA_ANNUAL_GROWTH_RATE )",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_REVENUE_TOTAL_2YR",
+      "formula": "VA_REVENUE_TOTAL_1YR * ( 1 + VA_ANNUAL_GROWTH_RATE )",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_REVENUE_TOTAL_3YR",
+      "formula": "VA_REVENUE_TOTAL_2YR * ( 1 + VA_ANNUAL_GROWTH_RATE )",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_REVENUE_TOTAL_4YR",
+      "formula": "VA_REVENUE_TOTAL_3YR * ( 1 + VA_ANNUAL_GROWTH_RATE )",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_REVENUE_TOTAL_5YR",
+      "formula": "VA_REVENUE_TOTAL_4YR * ( 1 + VA_ANNUAL_GROWTH_RATE )",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_REVENUE_PRODUCT_RESALE_5YR",
+      "formula": "VA_REVENUE_PRODUCT_RESALE_PC   * VA_REVENUE_TOTAL_5YR",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_REVENUE_TM_SUPPORT_5YR",
+      "formula": "VA_REVENUE_TM_SUPPORT_PC * VA_REVENUE_TOTAL_5YR",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_REVENUE_PROJECTS_5YR",
+      "formula": "VA_REVENUE_PROJECTS_PC * VA_REVENUE_TOTAL_5YR",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_REVENUE_MANAGED_SERVICES_5YR",
+      "formula": "VA_REVENUE_MANAGED_SERVICES_PC * VA_REVENUE_TOTAL_5YR",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_REVENUE_CLOUD_5YR",
+      "formula": "VA_REVENUE_CLOUD_PC * VA_REVENUE_TOTAL_5YR",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_REVENUE_TOTAL_MM",
+      "formula": "VA_REVENUE_TOTAL / 1000000",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_REVENUE_TOTAL_1YR_MM",
+      "formula": "VA_REVENUE_TOTAL_1YR / 1000000",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_REVENUE_TOTAL_2YR_MM",
+      "formula": "VA_REVENUE_TOTAL_2YR / 1000000",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_REVENUE_TOTAL_3YR_MM",
+      "formula": "VA_REVENUE_TOTAL_3YR / 1000000",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_REVENUE_TOTAL_4YR_MM",
+      "formula": "VA_REVENUE_TOTAL_4YR / 1000000",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_REVENUE_TOTAL_5YR_MM",
+      "formula": "VA_REVENUE_TOTAL_5YR / 1000000",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_PRODUCT_RESALE_MULTPLIER_5YR",
+      "formula": "",
+      "calculationType": "lookup"
+    },
+    {
+      "name": "VA_TM_SUPPORT_MULTPLIER_5YR",
+      "formula": "",
+      "calculationType": "lookup"
+    },
+    {
+      "name": "VA_PROJECTS_MULTPLIER_5YR",
+      "formula": "",
+      "calculationType": "lookup"
+    },
+    {
+      "name": "VA_MANAGED_SERVICES_MULTPLIER_5YR",
+      "formula": "",
+      "calculationType": "lookup"
+    },
+    {
+      "name": "VA_CLOUD_MULTPLIER_5YR",
+      "formula": "",
+      "calculationType": "lookup"
+    },
+    {
+      "name": "VA_PRODUCT_RESALE_VALUATION_5YR",
+      "formula": "VA_PRODUCT_RESALE_MULTPLIER_5YR * VA_REVENUE_PRODUCT_RESALE_5YR",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_TM_SUPPORT_VALUATION_5YR",
+      "formula": "VA_TM_SUPPORT_MULTPLIER_5YR * VA_REVENUE_TM_SUPPORT_5YR",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_PROJECTS_VALUATION_5YR",
+      "formula": "VA_PROJECTS_MULTPLIER_5YR * VA_REVENUE_PROJECTS_5YR",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_MANAGED_SERVICES_VALUATION_5YR",
+      "formula": "VA_MANAGED_SERVICES_MULTPLIER_5YR * VA_REVENUE_MANAGED_SERVICES_5YR",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_CLOUD_VALUATION_5YR",
+      "formula": "VA_CLOUD_MULTPLIER_5YR * VA_REVENUE_CLOUD_5YR",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_REVENUE_TOTAL_VALUATION_5YR",
+      "formula": "VA_PRODUCT_RESALE_VALUATION_5YR + VA_TM_SUPPORT_VALUATION_5YR + VA_PROJECTS_VALUATION_5YR + VA_MANAGED_SERVICES_VALUATION_5YR + VA_CLOUD_VALUATION_5YR",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_REVENUE_TOTAL_5YR_CAGR",
+      "formula": "",
+      "calculationType": "rri"
+    },
+    {
+      "name": "VA_NET_INCOME_5YR",
+      "formula": "VA_NET_INCOME_PC_5YR * VA_REVENUE_TOTAL_5YR",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_NET_INCOME_MULTIPLE_5YR",
+      "formula": "",
+      "calculationType": "lookup"
+    },
+    {
+      "name": "VA_NET_INCOME_VALUATION_5YR",
+      "formula": "VA_NET_INCOME_MULTIPLE_5YR * VA_NET_INCOME_5YR",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_NET_INCOME_VALUATION_5YR_CAGR",
+      "formula": "",
+      "calculationType": "rri"
+    },
+    {
+      "name": "VA_AVERAGE_REVENUE_NET_INCOME_VALUATION_5YR",
+      "formula": "(VA_REVENUE_TOTAL_VALUATION_5YR + VA_NET_INCOME_VALUATION_5YR) / 2",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_AVERAGE_REVENUE_NET_INCOME_VALUATION_5YR_CAGR",
+      "formula": "",
+      "calculationType": "rri"
+    },
+    {
+      "name": "VA_REVENUE_PER_CUSTOMER",
+      "formula": "VA_MRR * 12 + VA_PRODUCT_PROJECT_REVENUE",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_AVG_CUSTOMERS_CURRENT",
+      "formula": "VA_REVENUE_TOTAL / VA_REVENUE_PER_CUSTOMER",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_REVENUE_GAP",
+      "formula": "VA_REVENUE_TOTAL_5YR - VA_REVENUE_TOTAL",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_ACCOUNTS_NEEDED",
+      "formula": "VA_REVENUE_GAP / VA_REVENUE_PER_CUSTOMER",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_ACCOUNTS",
+      "formula": "VA_AVG_CUSTOMERS_CURRENT",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_ACCOUNTS_1YR",
+      "formula": "VA_ACCOUNTS_NEEDED / 5 + VA_ACCOUNTS",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_ACCOUNTS_2YR",
+      "formula": "VA_ACCOUNTS_NEEDED / 5 + VA_ACCOUNTS_1YR",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_ACCOUNTS_3YR",
+      "formula": "VA_ACCOUNTS_NEEDED / 5 + VA_ACCOUNTS_2YR",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_ACCOUNTS_4YR",
+      "formula": "VA_ACCOUNTS_NEEDED / 5 + VA_ACCOUNTS_3YR",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_ACCOUNTS_5YR",
+      "formula": "VA_ACCOUNTS_NEEDED / 5 + VA_ACCOUNTS_4YR",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_ACCOUNTS_CAGR",
+      "formula": "",
+      "calculationType": "rri"
+    },
+    {
+      "name": "VA_TOTAL_EMPLOYEES",
+      "formula": "( ( VA_REVENUE_TOTAL - 100000) / 250000) + 6",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_PCT_SERVICE_EMPLOYEES",
+      "formula": "",
+      "calculationType": "lookup_range"
+    },
+    {
+      "name": "VA_PCT_SALES_EMPLOYEES",
+      "formula": "",
+      "calculationType": "lookup_range"
+    },
+    {
+      "name": "VA_SERVICE_HEADCOUNT",
+      "formula": "",
+      "calculationType": "evaluation_range"
+    },
+    {
+      "name": "VA_SALES_HEADCOUNT",
+      "formula": "",
+      "calculationType": "evaluation_range"
+    },
+    {
+      "name": "VA_OTHER_HEADCOUNT",
+      "formula": "",
+      "calculationType": "evaluation_range"
+    },
+    {
+      "name": "VA_ACCOUNTS_ATTRITED_1YR",
+      "formula": "VA_ANNUAL_ATTRITION * VA_ACCOUNTS",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_ACCOUNTS_ATTRITED_2YR",
+      "formula": "VA_ANNUAL_ATTRITION * VA_ACCOUNTS_1YR",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_ACCOUNTS_ATTRITED_3YR",
+      "formula": "VA_ANNUAL_ATTRITION * VA_ACCOUNTS_2YR",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_ACCOUNTS_ATTRITED_4YR",
+      "formula": "VA_ANNUAL_ATTRITION * VA_ACCOUNTS_3YR",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_ACCOUNTS_ATTRITED_5YR",
+      "formula": "VA_ANNUAL_ATTRITION * VA_ACCOUNTS_4YR",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_WINS_NEEDED_1YR",
+      "formula": "VA_ACCOUNTS_1YR - VA_ACCOUNTS     + VA_ACCOUNTS_ATTRITED_1YR",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_WINS_NEEDED_2YR",
+      "formula": "VA_ACCOUNTS_2YR - VA_ACCOUNTS_1YR + VA_ACCOUNTS_ATTRITED_2YR",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_WINS_NEEDED_3YR",
+      "formula": "VA_ACCOUNTS_3YR - VA_ACCOUNTS_2YR + VA_ACCOUNTS_ATTRITED_3YR",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_WINS_NEEDED_4YR",
+      "formula": "VA_ACCOUNTS_4YR - VA_ACCOUNTS_3YR + VA_ACCOUNTS_ATTRITED_4YR",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_WINS_NEEDED_5YR",
+      "formula": "VA_ACCOUNTS_5YR - VA_ACCOUNTS_4YR + VA_ACCOUNTS_ATTRITED_5YR",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_USERS_MEDIAN",
+      "formula": "",
+      "calculationType": "lookup"
+    },
+    {
+      "name": "VA_TOTAL_USERS",
+      "formula": "VA_AVG_CUSTOMERS_CURRENT * VA_USERS_MEDIAN",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_TOTAL_USERS_1YR",
+      "formula": "VA_ACCOUNTS_1YR * VA_USERS_MEDIAN",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_TOTAL_USERS_2YR",
+      "formula": "VA_ACCOUNTS_2YR * VA_USERS_MEDIAN",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_TOTAL_USERS_3YR",
+      "formula": "VA_ACCOUNTS_3YR * VA_USERS_MEDIAN",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_TOTAL_USERS_4YR",
+      "formula": "VA_ACCOUNTS_4YR * VA_USERS_MEDIAN",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "VA_TOTAL_USERS_5YR",
+      "formula": "VA_ACCOUNTS_5YR * VA_USERS_MEDIAN",
+      "calculationType": "evaluation"
+    },
+    {
+      "name": "S-L Insights",
+      "formula": "",
+      "calculationType": "replace"
+    },
+    {
+      "name": "VA_WINS_NEEDED_AVERAGE",
+      "formula": "(VA_WINS_NEEDED_1YR + VA_WINS_NEEDED_2YR + VA_WINS_NEEDED_3YR + VA_WINS_NEEDED_4YR + VA_WINS_NEEDED_5YR ) / 5",
+      "calculationType": "evaluation"
+    }
+  ]
+}
