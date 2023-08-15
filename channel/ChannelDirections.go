@@ -11,6 +11,10 @@ func main() {
 	pong(pongs, pings)
 
 	fmt.Println(<-pongs)
+
+	////
+	/* t:=make(chan string)
+	pong() */
 }
 
 func ping(pings chan<- string, msg string) {
