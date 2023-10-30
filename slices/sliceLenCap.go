@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"sort"
+	"strings"
 )
 
 func main() {
@@ -21,4 +22,5 @@ func main() {
 	str := []string{"ram", "al", "xx", "zz", "AA", "PP", "pp"}
 	sort.Strings(str)
 	fmt.Println(str)
+	fmt.Println(strings.Join(str, "::"))
 }
