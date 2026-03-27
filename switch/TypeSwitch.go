@@ -6,7 +6,8 @@ import (
 
 func main() {
 	var x interface{}
-	x = 100.0
+	x = (100.6778)
+	//x = float32(100.6778)
 	switch i := x.(type) {
 	case nil:
 		fmt.Printf("type of x is: %T\n", i)
