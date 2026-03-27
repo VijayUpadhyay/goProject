@@ -24,7 +24,7 @@ func main() {
 	b2 := 'b'
 	b3 := '♬'
 
-	// Printing the value, unicode equivalent and type of the variable
+	// Printing the value, Unicode equivalent and type of the variable
 	fmt.Printf("Value: %c, Unicode: %U, Type: %s\n", b1, b1, reflect.TypeOf(b1))
 	fmt.Printf("Value: %c, Unicode: %U, Type: %s\n", b2, b2, reflect.TypeOf(b2))
 	fmt.Printf("Value: %c, Unicode: %U, Type: %s\n", b3, b3, reflect.TypeOf(b3))
